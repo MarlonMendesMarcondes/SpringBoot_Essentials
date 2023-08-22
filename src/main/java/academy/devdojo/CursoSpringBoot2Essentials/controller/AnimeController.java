@@ -1,8 +1,8 @@
 package academy.devdojo.CursoSpringBoot2Essentials.controller;
 
 import academy.devdojo.CursoSpringBoot2Essentials.domain.Anime;
-import academy.devdojo.CursoSpringBoot2Essentials.requests.AnimePostRequestBody;
-import academy.devdojo.CursoSpringBoot2Essentials.requests.AnimePutRequestBody;
+import academy.devdojo.CursoSpringBoot2Essentials.request.AnimePostRequestBody;
+import academy.devdojo.CursoSpringBoot2Essentials.request.AnimePutRequestBody;
 import academy.devdojo.CursoSpringBoot2Essentials.service.AnimeService;
 import academy.devdojo.CursoSpringBoot2Essentials.util.DateUtil;
 import lombok.AllArgsConstructor;
@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
-@RequestMapping("anime")
+@RequestMapping("animes")
 @Log4j2
 @AllArgsConstructor
 public class AnimeController {
