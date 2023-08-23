@@ -1,8 +1,8 @@
 package academy.devdojo.CursoSpringBoot2Essentials.controller;
 
 import academy.devdojo.CursoSpringBoot2Essentials.domain.Anime;
-import academy.devdojo.CursoSpringBoot2Essentials.request.AnimePostRequestBody;
-import academy.devdojo.CursoSpringBoot2Essentials.request.AnimePutRequestBody;
+import academy.devdojo.CursoSpringBoot2Essentials.requests.AnimePostRequestBody;
+import academy.devdojo.CursoSpringBoot2Essentials.requests.AnimePutRequestBody;
 import academy.devdojo.CursoSpringBoot2Essentials.service.AnimeService;
 import academy.devdojo.CursoSpringBoot2Essentials.util.DateUtil;
 import lombok.AllArgsConstructor;
@@ -32,6 +32,10 @@ public class AnimeController {
     @GetMapping(path = "/{id}")
     public ResponseEntity<Anime> findById(@PathVariable long id) {
         return ResponseEntity.ok(animeService.findByIdOrThrowBadRequestException(id));
+    }
+    @GetMapping(path = "/find")
+    public ResponseEntity<List<Anime>> findByName(@RequestParam String name) {
+        return ResponseEntity.ok(animeService.findByName(name));
     }
 
     @PostMapping

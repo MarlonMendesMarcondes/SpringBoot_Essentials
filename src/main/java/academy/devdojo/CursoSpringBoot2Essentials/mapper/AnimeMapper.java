@@ -1,8 +1,8 @@
 package academy.devdojo.CursoSpringBoot2Essentials.mapper;
 
 import academy.devdojo.CursoSpringBoot2Essentials.domain.Anime;
-import academy.devdojo.CursoSpringBoot2Essentials.request.AnimePostRequestBody;
-import academy.devdojo.CursoSpringBoot2Essentials.request.AnimePutRequestBody;
+import academy.devdojo.CursoSpringBoot2Essentials.requests.AnimePostRequestBody;
+import academy.devdojo.CursoSpringBoot2Essentials.requests.AnimePutRequestBody;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

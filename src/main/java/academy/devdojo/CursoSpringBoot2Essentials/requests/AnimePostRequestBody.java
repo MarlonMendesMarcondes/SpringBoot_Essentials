@@ -1,4 +1,4 @@
-package academy.devdojo.CursoSpringBoot2Essentials.request;
+package academy.devdojo.CursoSpringBoot2Essentials.requests;
 
 import lombok.Data;
 
