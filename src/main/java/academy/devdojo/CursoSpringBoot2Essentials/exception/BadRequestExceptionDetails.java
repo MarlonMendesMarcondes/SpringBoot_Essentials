@@ -1,11 +1,9 @@
 package academy.devdojo.CursoSpringBoot2Essentials.exception;
 
 import lombok.Builder;
-import lombok.Data;
 
 import java.time.LocalDateTime;
 
-@Data
 @Builder
 public class BadRequestExceptionDetails {
     private String title;
