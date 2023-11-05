@@ -1,6 +1,7 @@
 package academy.devdojo.CursoSpringBoot2Essentials.repository;
 
 import academy.devdojo.CursoSpringBoot2Essentials.domain.Anime;
+import academy.devdojo.CursoSpringBoot2Essentials.util.AnimeCreator;
 import lombok.extern.log4j.Log4j2;
 import org.hibernate.exception.ConstraintViolationException;
 import org.junit.jupiter.api.Assertions;
@@ -24,7 +25,7 @@ class AnimeRepositoryTest {
     @Test
     @DisplayName("Save persistent anime when sucessful")
     void save_PersistAnime_WhenSucessful(){
-        Anime animeToBeSaved = createAnime();
+        Anime animeToBeSaved = AnimeCreator.createAnimeToBeSaved();
 
         Anime animeSaved = this.animeRepository.save(animeToBeSaved);
 
@@ -39,7 +40,7 @@ class AnimeRepositoryTest {
     @Test
     @DisplayName("Save updates anime when sucessful")
     void save_UpdatesAnime_WhenSucessful(){
-        Anime animeToBeSaved = createAnime();
+        Anime animeToBeSaved = AnimeCreator.createAnimeToBeSaved();
 
         Anime animeSaved = this.animeRepository.save(animeToBeSaved);
 
@@ -60,7 +61,7 @@ class AnimeRepositoryTest {
     @Test
     @DisplayName("Delete remove anime when sucessful")
     void Delete_RemoveAnime_WhenSucessful(){
-        Anime animeToBeSaved = createAnime();
+        Anime animeToBeSaved = AnimeCreator.createAnimeToBeSaved();
 
         Anime animeSaved = this.animeRepository.save(animeToBeSaved);
 
@@ -74,7 +75,7 @@ class AnimeRepositoryTest {
     @Test
     @DisplayName("Find By Name returns list of anime when Successful")
     void findByName_ReturnsListOfAnime_WhenSuccessful(){
-        Anime animeToBeSaved = createAnime();
+        Anime animeToBeSaved = AnimeCreator.createAnimeToBeSaved();
 
         Anime animeSaved = this.animeRepository.save(animeToBeSaved);
 
@@ -118,9 +119,5 @@ class AnimeRepositoryTest {
 
     }
 
-    private Anime createAnime(){
-        return Anime.builder()
-                .name("Hajime no Ippo")
-                .build();
-    }
+
 }
