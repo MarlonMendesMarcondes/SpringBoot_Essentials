@@ -68,9 +68,20 @@ class AnimeControllerTest {
 
         Assertions.assertEquals(animePage.toList().get(0).getName(),expectedName);
     }
-
     @Test
     @DisplayName("listAll returns list of anime when successful")
+    void listAll_ReturnsListOfAnimes_WhenSuccessful(){
+        String expectedName = AnimeCreator.createValidAnime().getName();
+
+        List<Anime> animes = animeController.listAll().getBody();
+        Assertions.assertNotNull(animes);
+        Assertions.assertFalse(animes.isEmpty());
+        Assertions.assertEquals(1,animes.size());
+
+        Assertions.assertEquals(animes.get(0).getName(),(expectedName));
+    }
+    @Test
+    @DisplayName("findById returns anime when successful")
     void findbyID_ReturnAnimes_WhenSucessful(){
         Long expectedId = AnimeCreator.createValidAnime().getId();
 
@@ -78,6 +89,19 @@ class AnimeControllerTest {
 
         Assertions.assertNotNull(anime);
         Assertions.assertEquals(anime.getId(),expectedId);
+    }
+    @Test
+    @DisplayName("findByName returns a list of anime when successful")
+    void findByName_ReturnsListOfAnime_WhenSuccessful(){
+        String expectedName = AnimeCreator.createValidAnime().getName();
+
+        List<Anime> animes = animeController.findByName("anime").getBody();
+
+        Assertions.assertNotNull(animes);
+        Assertions.assertFalse(animes.isEmpty());
+        Assertions.assertEquals(1, animes.size());
+
+        Assertions.assertEquals(animes.get(0).getName(),(expectedName));
     }
     @Test
     @DisplayName("findByName returns an empty list of anime when anime is not found")
