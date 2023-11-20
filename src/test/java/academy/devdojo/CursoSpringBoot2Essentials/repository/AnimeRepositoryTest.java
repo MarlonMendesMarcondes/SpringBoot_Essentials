@@ -7,15 +7,11 @@ import org.hibernate.exception.ConstraintViolationException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.dao.DataIntegrityViolationException;
 
 import java.util.List;
 import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
 @DataJpaTest
 @DisplayName("Tests for anime repository")
 @Log4j2
@@ -100,22 +96,13 @@ class AnimeRepositoryTest {
     @DisplayName("Save Throw ConstraintValidationException when name is empty")
     void save_ThrowConstraintValidationException_WhenNameIsEmpty(){
         Anime anime = new Anime();
-
-
-//        Exception exception = assertThrows(DataIntegrityViolationException.class,
+//        Exception exception= Assertions.assertThrows(DataIntegrityViolationException.class,
 //                () -> this.animeRepository.save(anime));
 //        Throwable cause = exception.getCause();
 //        assert cause instanceof ConstraintViolationException;
-        boolean exceptionThrown = true;
-        try {
-            this.animeRepository.save(anime);
-        } catch (Exception e) {
-            if (e instanceof ConstraintViolationException) {
-                exceptionThrown = false;
-            }
-        }
-        Assertions.assertTrue(exceptionThrown,
-                "Uma ConstraintViolationException deve ser lançada ao salvar um anime inválido.");
+        Assertions.assertThrows(ConstraintViolationException.class,
+                ()->this.animeRepository.save(anime),
+                "The anime name cannot be empty");
 
     }
 
