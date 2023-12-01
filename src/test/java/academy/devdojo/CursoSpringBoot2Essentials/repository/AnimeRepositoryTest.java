@@ -9,6 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.dao.DataIntegrityViolationException;
 
 import java.util.List;
 import java.util.Optional;
@@ -96,10 +97,10 @@ class AnimeRepositoryTest {
     @DisplayName("Save Throw ConstraintValidationException when name is empty")
     void save_ThrowConstraintValidationException_WhenNameIsEmpty(){
         Anime anime = new Anime();
-//        Exception exception= Assertions.assertThrows(DataIntegrityViolationException.class,
-//                () -> this.animeRepository.save(anime));
-//        Throwable cause = exception.getCause();
-//        assert cause instanceof ConstraintViolationException;
+        Exception exception= Assertions.assertThrows(DataIntegrityViolationException.class,
+                () -> this.animeRepository.save(anime));
+        Throwable cause = exception.getCause();
+        assert cause instanceof ConstraintViolationException;
         Assertions.assertThrows(ConstraintViolationException.class,
                 ()->this.animeRepository.save(anime),
                 "The anime name cannot be empty");

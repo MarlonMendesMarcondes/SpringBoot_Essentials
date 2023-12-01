@@ -33,7 +33,7 @@ class AnimeControllerTest {
     private AnimeService animeServiceMock;
     @BeforeEach
     void setUp(){
-        PageImpl<Anime> animePage = new PageImpl<>(List.of(AnimeCreator.createValidUpdatedAnime()));
+        PageImpl<Anime> animePage = new PageImpl<>(List.of(AnimeCreator.createValidAnime()));
         BDDMockito.when(animeServiceMock.listAll(ArgumentMatchers.any()))
                 .thenReturn(animePage);
 
