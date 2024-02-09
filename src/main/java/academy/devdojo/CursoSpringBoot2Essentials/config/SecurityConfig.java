@@ -34,6 +34,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
 //                csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).and()
                 .authorizeRequests()
+                .antMatchers("/animes/admin/**").hasRole("ADMIN")
+                .antMatchers("/animes/**").hasRole("USER")
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -46,14 +48,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
         log.info("Password encoded {}",passwordEncoder.encode("academy"));
-//        auth.inMemoryAuthentication()
-//                .withUser("marlon")
-//                .password(passwordEncoder.encode("mendes"))
-//                .roles("USER","ADMIN")
-//                .and()
-//                .withUser("marcondes")
-//                .password(passwordEncoder.encode("mendes"))
-//                .roles("USER");
+        auth.inMemoryAuthentication()
+                .withUser("william")
+                .password(passwordEncoder.encode("academy"))
+                .roles("USER", "ADMIN")
+                .and()
+                .withUser("devdojo")
+                .password(passwordEncoder.encode("academy"))
+                .roles("USER");
+
         auth.userDetailsService(devDojoUserDetailsService)
                 .passwordEncoder(passwordEncoder);
     }
